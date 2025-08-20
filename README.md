@@ -1,46 +1,166 @@
-# Getting Started with Create React App
+# 📚 Goodreads 2025 Top 200 书籍展示网站
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+一个现代化的图书展示网站，展示Goodreads 2025年度最受欢迎的200本书籍。
 
-## Available Scripts
+## ✨ 功能特性
 
-In the project directory, you can run:
+- 🎯 **精美展示** - 现代化的卡片式布局，展示书籍信息
+- 🔍 **智能搜索** - 支持按书名、作者搜索
+- ⭐ **评分筛选** - 可按评分范围筛选书籍
+- 📱 **响应式设计** - 完美支持手机、平板、电脑
+- 🌍 **双语支持** - 中英文标题和描述
+- 🎨 **温暖配色** - 采用书籍主题的温暖米色系
 
-### `npm start`
+## 🚀 快速开始
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 本地开发
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. 安装依赖
+```bash
+npm install
+```
 
-### `npm test`
+2. 启动开发服务器
+```bash
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. 打开浏览器访问 [http://localhost:3000](http://localhost:3000)
 
-### `npm run build`
+### 构建生产版本
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🌐 部署到 GitHub Pages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 方法1：使用 gh-pages 包（推荐）
 
-### `npm run eject`
+1. 安装 gh-pages
+```bash
+npm install --save-dev gh-pages
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. 在 `package.json` 中添加部署脚本
+```json
+{
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. 部署到 GitHub Pages
+```bash
+npm run deploy
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 方法2：手动部署
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. 构建项目
+```bash
+npm run build
+```
 
-## Learn More
+2. 将 `build` 文件夹内容推送到 GitHub 仓库的 `gh-pages` 分支
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. 在 GitHub 仓库设置中启用 GitHub Pages，选择 `gh-pages` 分支作为源
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠 技术栈
+
+- **前端框架**: React 18 + TypeScript
+- **样式系统**: Tailwind CSS
+- **构建工具**: Create React App
+- **字体**: Inter (Google Fonts)
+- **图标**: Emoji + CSS
+
+## 📁 项目结构
+
+```
+src/
+├── components/          # React 组件
+│   ├── Header.tsx      # 网站头部
+│   ├── BookCard.tsx    # 书籍卡片
+│   └── SearchAndFilter.tsx # 搜索和筛选
+├── types/              # TypeScript 类型定义
+│   └── book.ts         # 书籍数据类型
+├── data/               # 数据文件
+│   └── book_info.json  # 书籍数据
+├── App.tsx             # 主应用组件
+└── index.css           # 全局样式
+```
+
+## 🎨 设计特色
+
+- **温暖米色背景** (`#faf8f3`) - 像纸张一样舒适
+- **深棕色强调色** (`#8b4513`) - 经典书籍色彩
+- **卡片式布局** - 每本书独立展示
+- **悬停效果** - 丰富的交互体验
+- **响应式网格** - 自适应不同屏幕尺寸
+
+## 📊 数据字段
+
+网站展示以下书籍信息：
+- ✅ 排名 (rank)
+- ✅ 英文标题 (original_title)
+- ✅ 中文标题 (title_zh)
+- ✅ 作者 (author)
+- ✅ 评分 (rating)
+- ✅ 评分数量 (ratings_count)
+- ✅ 收藏数量 (shelvings)
+- ✅ 中文描述 (description_review)
+- ✅ Goodreads链接 (goodreads_link)
+- ✅ 封面图片 (goodreads_cover_link)
+
+❌ 英文描述 (description_review_original) - 不展示
+
+## 🔧 自定义配置
+
+### 修改颜色主题
+
+在 `tailwind.config.js` 中修改自定义颜色：
+
+```javascript
+colors: {
+  'book-warm': '#faf8f3',    // 主背景色
+  'book-brown': '#8b4513',   // 强调色
+  'book-cream': '#fff8dc',   // 奶油色
+  'book-paper': '#f5f5dc',  // 纸张色
+}
+```
+
+### 修改字体
+
+在 `src/index.css` 中导入其他Google字体：
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=YourFont:wght@300;400;500;600;700&display=swap');
+```
+
+## 📱 响应式断点
+
+- **手机**: < 640px (1列布局)
+- **平板**: 641px - 1024px (2列布局)
+- **小屏电脑**: 1025px - 1279px (3列布局)
+- **大屏电脑**: ≥ 1280px (4列布局)
+
+## 🚀 性能优化
+
+- 使用 `useMemo` 优化搜索和筛选性能
+- 图片懒加载和错误处理
+- CSS 动画使用 `transform` 而非 `position` 属性
+- 响应式图片加载
+
+## 📄 许可证
+
+MIT License
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+---
+
+**享受阅读的乐趣！** 📖✨
