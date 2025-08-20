@@ -10,6 +10,7 @@
 - 📱 **响应式设计** - 完美支持手机、平板、电脑
 - 🌍 **双语支持** - 中英文标题和描述
 - 🎨 **温暖配色** - 采用书籍主题的温暖米色系
+- 🔄 **分类切换** - 支持非小说类和总榜切换
 
 ## 🚀 快速开始
 
@@ -83,11 +84,14 @@ src/
 ├── components/          # React 组件
 │   ├── Header.tsx      # 网站头部
 │   ├── BookCard.tsx    # 书籍卡片
+│   ├── BookListItem.tsx # 书籍列表项
+│   ├── CategorySwitch.tsx # 分类切换
 │   └── SearchAndFilter.tsx # 搜索和筛选
 ├── types/              # TypeScript 类型定义
 │   └── book.ts         # 书籍数据类型
 ├── data/               # 数据文件
-│   └── book_info.json  # 书籍数据
+│   ├── book_info_non_fiction.json  # 非小说类数据
+│   └── book_info_total.json        # 总榜数据
 ├── App.tsx             # 主应用组件
 └── index.css           # 全局样式
 ```
@@ -99,6 +103,7 @@ src/
 - **卡片式布局** - 每本书独立展示
 - **悬停效果** - 丰富的交互体验
 - **响应式网格** - 自适应不同屏幕尺寸
+- **双视图模式** - 网格视图和列表视图
 
 ## 📊 数据字段
 
@@ -109,12 +114,9 @@ src/
 - ✅ 作者 (author)
 - ✅ 评分 (rating)
 - ✅ 评分数量 (ratings_count)
-- ✅ 收藏数量 (shelvings)
 - ✅ 中文描述 (description_review)
 - ✅ Goodreads链接 (goodreads_link)
 - ✅ 封面图片 (goodreads_cover_link)
-
-❌ 英文描述 (description_review_original) - 不展示
 
 ## 🔧 自定义配置
 
