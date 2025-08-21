@@ -67,6 +67,7 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
           >
             <option value="rank">综合排名</option>
             <option value="rating">按评分</option>
+            <option value="ratings_count">按评分人数</option>
             <option value="title">按书名</option>
             <option value="author">按作者</option>
           </select>

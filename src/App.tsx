@@ -69,6 +69,11 @@ function App() {
       switch (sortBy) {
         case 'rating':
           return parseFloat(b.rating) - parseFloat(a.rating);
+        case 'ratings_count':
+          // 按评分人数排序，需要先转换为数字进行比较
+          const ratingsCountA = parseInt((a.ratings_count || '0').replace(/[^\d]/g, ''));
+          const ratingsCountB = parseInt((b.ratings_count || '0').replace(/[^\d]/g, ''));
+          return ratingsCountB - ratingsCountA; // 降序排列，评分人数多的在前
         case 'title':
           return (a.title_zh || '').localeCompare(b.title_zh || '', 'zh-CN');
         case 'author':
