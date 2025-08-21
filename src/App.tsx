@@ -71,9 +71,21 @@ function App() {
           return parseFloat(b.rating) - parseFloat(a.rating);
         case 'ratings_count':
           // 按评分人数排序，需要先转换为数字进行比较
-          const ratingsCountA = parseInt((a.ratings_count || '0').replace(/[^\d]/g, ''));
-          const ratingsCountB = parseInt((b.ratings_count || '0').replace(/[^\d]/g, ''));
-          return ratingsCountB - ratingsCountA; // 降序排列，评分人数多的在前
+          // 处理 N/A 和无效值，将它们排在最后
+          const ratingsCountA = a.ratings_count === 'N/A' || !a.ratings_count ? 0 : parseInt(a.ratings_count.replace(/[^\d]/g, ''));
+          const ratingsCountB = b.ratings_count === 'N/A' || !b.ratings_count ? 0 : parseInt(b.ratings_count.replace(/[^\d]/g, ''));
+          
+          // 如果两个都是 N/A 或无效值，保持原有顺序
+          if (ratingsCountA === 0 && ratingsCountB === 0) {
+            return 0;
+          }
+          
+          // 如果只有一个是 N/A 或无效值，将有效值排在前面
+          if (ratingsCountA === 0) return 1;
+          if (ratingsCountB === 0) return -1;
+          
+          // 正常数字比较，降序排列
+          return ratingsCountB - ratingsCountA;
         case 'title':
           return (a.title_zh || '').localeCompare(b.title_zh || '', 'zh-CN');
         case 'author':
